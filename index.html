@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f8f8f8;
+        margin: 0;
+    }
+    #converterContainer {
+        text-align: center;
+        padding: 20px;
+        background-color: #47a4da;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    input[type="number"] {
+        width: 100px;
+        padding: 8px;
+        margin: 5px;
+        box-sizing: border-box;
+        border: 1px solid #e43737;
+        border-radius: 5px;
+    }
+    input[type="button"] {
+        background-color: #dd9426;
+        color: rgb(36, 125, 197);
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    input[type="button"]:hover {
+        background-color: #0e0f0e;
+    }
+    label {
+        color: #333;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="converterContainer">
+    <h2 style="color: #d46f10;">Temperature Converter</h2>
+    <label for="celsius">Celsius:</label>
+    <input type="number" id="celsius" oninput="convertTemperatures('celsius')" style="background-color: #f8f8f8;">
+    <br>
+    <label for="fahrenheit">Fahrenheit:</label>
+    <input type="number" id="fahrenheit" oninput="convertTemperatures('fahrenheit')" style="background-color: #f8f8f8;">
+    <br>
+    <label for="kelvin">Kelvin:</label>
+    <input type="number" id="kelvin" oninput="convertTemperatures('kelvin')" style="background-color: #f8f8f8;">
+</div>
+
+<script>
+    function convertTemperatures(source) {
+        var celsius = document.getElementById("celsius");
+        var fahrenheit = document.getElementById("fahrenheit");
+        var kelvin = document.getElementById("kelvin");
+
+        switch (source) {
+            case 'celsius':
+                fahrenheit.value = (parseFloat(celsius.value) * 9/5) + 32;
+                kelvin.value = parseFloat(celsius.value) + 273.15;
+                break;
+            case 'fahrenheit':
+                celsius.value = (parseFloat(fahrenheit.value) - 32) * 5/9;
+                kelvin.value = (parseFloat(fahrenheit.value) - 32) * 5/9 + 273.15;
+                break;
+            case 'kelvin':
+                celsius.value = parseFloat(kelvin.value) - 273.15;
+                fahrenheit.value = (parseFloat(kelvin.value) - 273.15) * 9/5 + 32;
+                break;
+            default:
+                break;
+        }
+    }
+</script>
+
+</body>
+</html>
